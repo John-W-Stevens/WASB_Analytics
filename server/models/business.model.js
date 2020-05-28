@@ -10,5 +10,7 @@ const BusinessSchema = new mongoose.Schema({
     state: String,
     zipCode: String,
     description: String,
+    lat: String,
+    long: String,
 }, {timestamps: true});
 module.exports.Business = mongoose.model("Business", BusinessSchema)
