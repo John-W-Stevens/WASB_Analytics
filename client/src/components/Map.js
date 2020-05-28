@@ -15,7 +15,7 @@ export default ({cities}) =>{
       return(
       // Washington state
       // Currently showing all cities in Washington as a 5000 radius black circle
-      <GoogleMap defaultZoom = {8} defaultCenter={{lat: 47.7511, lng: -120.7401}}>
+      <GoogleMap defaultZoom = {8} defaultCenter={{lat: 47.7511, lng: -120.7401}} >
         {loaded && cities.map(city => (
           <Circle center={{lat: parseFloat(city.lat), lng: parseFloat(city.long)}} radius={5000} />
         ))}
@@ -40,33 +40,52 @@ export default ({cities}) =>{
 
     return (
       <div>
-        <div style={{width: '80vw', height: '70vh'}}>
+        <div style={{height: '70vh', border:"2px solid lightgrey", borderRadius: "5px"}} >
+
           <WrappedMap 
-          googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${'Put Key Here'}`}
+          googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyCkv5iWhTid6y-MzbBTnojVUVPKETHaqvc`}
           loadingElement={<div style={{height: "100%"}}/>}
           containerElement={<div style={{height: "100%"}}/>}
           mapElement={<div style={{height: "100%"}}/>}
           />
         </div>    
   
-        <div>
-        <input type="radio" name="Category" value= "All" onChange = {(e) => {setFilter(e.target.value)}} />
-          <label>All</label>
-          <input type="radio" name="Category" value= "minority-owned" onChange = {(e) => {setFilter(e.target.value)}}/>
-          <label>Minority Owned</label>
-          <input type="radio" name="Category" value= "veteran-owned" onChange = {(e) => {setFilter(e.target.value)}}/>
-          <label>Veteran Owned</label>
-          <input type="radio" name="Category" value= "women-owned" onChange = {(e) => {setFilter(e.target.value)}}/>
-          <label>Women Owned</label>
-          <label>Set Filter for City</label>
-          <input value = {cityFilter} onChange = {(e) => {setCityFilter(e.target.value)}} />
-          <button onClick={filterHandler} >Apply Filter</button>
+        <div className="text-center" style={{margin: "15px auto 5px auto"}}>
+          <input type="radio" name="Category" value= "All" onChange = {(e) => {setFilter(e.target.value)}} style={{margin:"0px 5px"}}/>
+          <label style={{margin:"0px 5px"}}>All</label>
+          <input type="radio" name="Category" value= "minority-owned" onChange = {(e) => {setFilter(e.target.value)}} style={{margin:"0px 5px"}}/>
+          <label style={{margin:"0px 5px"}}>Minority-owned</label>
+          <input type="radio" name="Category" value= "veteran-owned" onChange = {(e) => {setFilter(e.target.value)}} style={{margin:"0px 5px"}}/>
+          <label style={{margin:"0px 5px"}}>Veteran-owned</label>
+          <input type="radio" name="Category" value= "women-owned" onChange = {(e) => {setFilter(e.target.value)}} style={{margin:"0px 5px"}}/>
+          <label style={{margin:"0px 5px"}}>Women-owned</label>
+          <label style={{margin:"0px 5px"}}>Location:</label>
+          <div className="form-group" style={{display: "inline-block"}}>
+            <input className="form-control" value = {cityFilter} onChange = {(e) => {setCityFilter(e.target.value)}} style={{margin:"0px 5px"}}/>
+          </div>
+          <button className="btn btn-sm btn-outline-dark" onClick={filterHandler} style={{marginLeft: "15px", verticalAlign:"middle"}}>Apply Filter</button>
         </div>
-        <div>
-          <p>Businesses owned by: {filter} in {cityFilter}</p>
-          {loaded && currentBusinesses.map((business, idx) => (
-            <p key={idx}>Business: {business.nameOfFirm} City: {business.city}</p>
-          ))}
+        <div className="row">
+          <div className="col-12" style={{ minHeight: "100px", maxHeight: "500px", overflow: "auto"}}>
+            <table className="table table-striped table-hover table-bordered table-sm" style={{border: "1px solid lightgrey", borderRadius: "5px"}}>
+              <thead className="thead-dark">
+                <tr>
+                  <th>Name of Business</th>
+                  <th>Category</th>
+                  <th>Location</th>
+                </tr>
+              </thead>
+              <tbody>
+                {loaded && currentBusinesses.map((business, idx) => (
+                  <tr key={idx}>
+                    <td>{business.nameOfFirm}</td>
+                    <td>{business.category}</td>
+                    <td>{business.address} {business.city} {business.zipCode}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     );
