@@ -50,17 +50,23 @@ export default ({cities}) =>{
         </div>    
   
         <div>
-          <label>Set Filter for business category</label>
-          <input value = {filter} onChange = {(e) => {setFilter(e.target.value)}} />
+        <input type="radio" name="Category" value= "All" onChange = {(e) => {setFilter(e.target.value)}} />
+          <label>All</label>
+          <input type="radio" name="Category" value= "minority-owned" onChange = {(e) => {setFilter(e.target.value)}}/>
+          <label>Minority Owned</label>
+          <input type="radio" name="Category" value= "veteran-owned" onChange = {(e) => {setFilter(e.target.value)}}/>
+          <label>Veteran Owned</label>
+          <input type="radio" name="Category" value= "women-owned" onChange = {(e) => {setFilter(e.target.value)}}/>
+          <label>Women Owned</label>
           <label>Set Filter for City</label>
           <input value = {cityFilter} onChange = {(e) => {setCityFilter(e.target.value)}} />
           <button onClick={filterHandler} >Apply Filter</button>
-          <div>
-            <p>Businesses owned by: {filter} in {cityFilter}</p>
-            {loaded && currentBusinesses.map((business, idx) => (
-              <p key={idx}>Business: {business.nameOfFirm} City: {business.city}</p>
-            ))}
-          </div>
+        </div>
+        <div>
+          <p>Businesses owned by: {filter} in {cityFilter}</p>
+          {loaded && currentBusinesses.map((business, idx) => (
+            <p key={idx}>Business: {business.nameOfFirm} City: {business.city}</p>
+          ))}
         </div>
       </div>
     );
