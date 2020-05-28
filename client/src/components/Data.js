@@ -1,6 +1,3 @@
-<<<<<<< Updated upstream
-import React, { useState, setState, useEffect } from 'react';
-=======
 import React, { useState, setState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { VictoryBar, VictoryChart, VictoryAxis, VictoryTheme, VictoryStack, VictoryPie } from 'victory';
@@ -559,4 +556,3 @@ const StateRace=(category,locationType) =>  {
   
   
  export default StateRace
->>>>>>> Stashed changes
