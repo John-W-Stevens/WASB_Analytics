@@ -6,6 +6,9 @@ import Cities from './components/Cities';
 import Header from "./components/Header"
 import Footer from "./components/Footer"
 
+import Data from "./components/Data"
+
+
 
 function App() {
   const [cities, setCities] = useState();
@@ -14,6 +17,9 @@ function App() {
           <Header />
           <Cities setCities={setCities} />
           <Map cities={cities} />
+
+          <Data/>
+
           <Footer />
     </div>
   );
