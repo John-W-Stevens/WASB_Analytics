@@ -10,14 +10,12 @@ export default ({cities}) =>{
     const [currentBusinesses, setCurrentBusinesses] = useState();
     const [loaded, setLoaded] = useState(false);
   
-    // This section does not seem to call additional API calls for more markers. I checked how many requests had been made using the API key both before and after refreshing with a list of 10 markers at different locations and the number only increased by 2. Once we have lat and long on our objects, this next section should be able to display pins in our map based off of what we filtered our data by.
     function Map() {
       return(
       // Washington state
-      // Currently showing all cities in Washington as a 5000 radius black circle
       <GoogleMap defaultZoom = {8} defaultCenter={{lat: 47.7511, lng: -120.7401}} >
-        {loaded && cities.map(city => (
-          <Circle center={{lat: parseFloat(city.lat), lng: parseFloat(city.long)}} radius={5000} />
+        {loaded && currentBusinesses.map(business => (
+          <Circle center={{lat: parseFloat(business.lat), lng: parseFloat(business.long)}} radius={5000} />
         ))}
       </GoogleMap>)
     }
@@ -35,7 +33,15 @@ export default ({cities}) =>{
   
     const filterHandler = e =>{
       e.preventDefault();
-      setCurrentBusinesses(businesses.filter(business => business.category === filter).filter(business => business.city.toLowerCase() === cityFilter.toLowerCase()))
+      if(filter=== "All" && cityFilter===""){
+        setCurrentBusinesses(businesses)
+      }
+      else if(cityFilter===""){
+        setCurrentBusinesses(businesses.filter(business => business.category === filter))
+      }
+      else(
+        setCurrentBusinesses(businesses.filter(business => business.category === filter).filter(business => business.city.toLowerCase() === cityFilter.toLowerCase()))
+      )
     }
 
     return (
@@ -43,7 +49,7 @@ export default ({cities}) =>{
         <div style={{height: '70vh', border:"2px solid lightgrey", borderRadius: "5px"}} >
 
           <WrappedMap 
-          googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key="apikey-here"`}
+          googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyCkv5iWhTid6y-MzbBTnojVUVPKETHaqvc`}
           loadingElement={<div style={{height: "100%"}}/>}
           containerElement={<div style={{height: "100%"}}/>}
           mapElement={<div style={{height: "100%"}}/>}

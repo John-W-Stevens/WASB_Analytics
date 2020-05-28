@@ -18,7 +18,7 @@ module.exports.findOneSingleBusiness = (request, response) => {
 
 // Create a Business: CREATE
 module.exports.createBusiness = (request, response) => {
-    const {nameOfFirm, tradeName, category, owner, address, city, state, zipCode, description} = request.body;
+    const {nameOfFirm, tradeName, category, owner, address, city, state, zipCode, description, lat, long} = request.body;
     Business.create({
         nameOfFirm,
         tradeName,
@@ -28,7 +28,9 @@ module.exports.createBusiness = (request, response) => {
         city,
         state,
         zipCode,
-        description
+        description,
+        lat,
+        long,
     })
         .then(Business => response.json(Business))
         .catch(err => response.status(400).json(err))
