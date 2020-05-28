@@ -508,7 +508,9 @@ const countyRaceDemo={
 const StateRace=(category,locationType) =>  {
     
       return (
-        <div>
+        <div className="row">
+        
+        <div className="col-6 offset-3" style={{border: "1px solid lightgrey", borderRadius: "5px", marginTop:"10px"}}>
         
         {/* <VictoryChart
         domainPadding={20}
@@ -550,6 +552,7 @@ const StateRace=(category,locationType) =>  {
         colorScale={["tomato", "orange", "gold", "cyan", "navy" ]}
         data={countyRaceDemo.Kitsap}
       />
+      </div>
       </div>
       );
     }
