@@ -553,19 +553,7 @@ const StateRace=(filter) =>  {
       
       return (
       <div>       
-        {/* <label htmlFor="location">Choose State/County</label>
-        <select name="location">
-          <option value="state">Washington State</option>
-            
-            for (i=0;i<counties.length;i++){
-              <option>
-                {counties[i]}
-              </option>
-            }
-            )
-            
-         
-        </select> */}
+        
 
         <VictoryLegend
           
