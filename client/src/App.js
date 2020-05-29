@@ -5,9 +5,9 @@ import Map from './components/Map';
 import Cities from './components/Cities';
 import Header from "./components/Header"
 import Footer from "./components/Footer"
-
+import Legend from "./components/Legend"
 import Data from "./components/Data"
-
+import Vets from "./components/Vets"
 
 
 function App() {
@@ -18,7 +18,10 @@ function App() {
           <Cities setCities={setCities} />
           <Map cities={cities} />
 
-          <Data/>
+          <Data />
+          <Legend/>
+          <Vets/>
+   
 
           <Footer />
     </div>

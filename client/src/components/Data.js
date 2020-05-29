@@ -1,6 +1,6 @@
 import React, { useState, setState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { VictoryBar, VictoryChart, VictoryAxis, VictoryTheme, VictoryStack, VictoryPie, VictoryGroup, VictoryLabel, VictoryLegend } from 'victory';
+import { VictoryBar, VictoryChart, VictoryAxis, VictoryTheme, VictoryStack, VictoryPie, VictoryLegend, VictoryContainer, VictoryLabel } from 'victory';
 
 const stateRaceDemo=[
   {x:"White", y:75},
@@ -13,6 +13,8 @@ const stateRaceDemo=[
   {x:"Two races w/ other race",  y:1},
   {x:"Two+ races w/o other race",  y:5}
 ]
+
+
 
 const countyRaceDemo={
   
@@ -549,67 +551,36 @@ const counties=[
 
 
 
-const StateRace=(filter) =>  {
+const StateRace=() =>  {
       
       return (
       <div>       
         
-
-        <VictoryLegend
-          
-          height={40}
-          width={200}
-          itemsPerRow={3}
-          orientation="horizontal"
-          gutter={5}
-          colorScale={["tomato", "orange", "gold", "cyan", "navy", "purple", "green", "salmon", "blue" ]}
-          style={{ border: { stroke: "none" }, title: { fontSize: 8 }, labels: {fontSize:5} }}
-          data={[
-            {name:"White"}, 
-            {name:"Black"}, 
-            {name:"American Indian/Alaska Native"}, 
-            {name:"Asian"}, 
-            {name:"Pacific Islander"}, 
-            {name:"Other Race"}, 
-            {name:"Two+ Races"}, 
-            {name:"Two races w/ other race"}, 
-            {name:"Two+ races w/o other race"} 
-          ]}
-        
-        
-        
-        />
-       <VictoryPie
-        // events={[{
-        //   target: "data",
-          
-        //   eventHandlers: {
-        //     onClick: () => {
-        //       return [
-        //         {
-        //           target: "data",
+        <div className="col-6 offset-3" style={{border: "1px solid lightgrey", borderRadius: "5px", marginTop:"10px"}}>
+          <div style={{width:"1000px"}}>
+            <div style={{display:"inline-block"}}>        
+              
+                                        
+                <VictoryPie       
+            
+                  height={600}
+                  colorScale={["tomato", "orange", "gold", "cyan", "navy", "purple", "green", "salmon", "blue" ]}
+                  padAngle={({ datum }) =>1}
                   
-        //           mutation: ({ style }) => {
-        //             return style.fill === "#c43a31" ? null : { style: { fill: "#c43a31" } };
-        //           }
-        //         } 
+                  data={stateRaceDemo}
+                  
+                  innerRadius={30}
+                  labels={() => null}     
+                    
                 
-        //       ];
-        //     }
-        //   }
-        // }]}
-        height={300}
-        colorScale={["tomato", "orange", "gold", "cyan", "navy", "purple", "green", "salmon", "blue" ]}
-        padAngle={({ datum }) =>1}
-        
-        data={stateRaceDemo}
-        // innerRadius={({ datum }) => datum.y * 20}
-        innerRadius={30}
-        labels={() => null}
-       
-        
-        
-      />
+                />
+                  
+              
+            </div>
+            
+          </div>
+          
+        </div>
       </div>
       );
     }
