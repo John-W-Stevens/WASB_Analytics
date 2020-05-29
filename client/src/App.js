@@ -17,8 +17,8 @@ function App() {
           <Header />
           <Cities setCities={setCities} />
           <Map cities={cities} />
-
-          <Data/>
+          <Data />
+   
 
           <Footer />
     </div>

@@ -49,7 +49,7 @@ export default ({cities}) =>{
         <div style={{height: '70vh', border:"2px solid lightgrey", borderRadius: "5px"}} >
 
           <WrappedMap 
-          googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=<insertkeyhere>`}
+          googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key="api-key-goes-here"`}
           loadingElement={<div style={{height: "100%"}}/>}
           containerElement={<div style={{height: "100%"}}/>}
           mapElement={<div style={{height: "100%"}}/>}
