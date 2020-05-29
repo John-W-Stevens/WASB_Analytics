@@ -554,9 +554,9 @@ const counties=[
 const StateRace=() =>  {
       
       return (
-      <div>       
+<div className="row">      
         
-        <div className="col-6 offset-3" style={{border: "1px solid lightgrey", borderRadius: "5px", marginTop:"10px"}}>
+        <div style={{border: "1px solid lightgrey", borderRadius: "5px", marginTop:"10px"}}>
           <div style={{width:"1000px"}}>
             <div style={{display:"inline-block"}}>        
               

@@ -16,11 +16,14 @@ function App() {
     <div className="App container">
           <Header />
           <Cities setCities={setCities} />
-          <Map cities={cities} />
+          <Map cities={cities} /><<<<<<< josh
 
           <Data />
           <Legend/>
           <Vets/>
+
+          <Data />
+
    
 
           <Footer />

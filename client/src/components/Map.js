@@ -14,10 +14,21 @@ export default ({cities}) =>{
       return(
       // Washington state
       <GoogleMap defaultZoom = {8} defaultCenter={{lat: 47.7511, lng: -120.7401}} >
-        {loaded && currentBusinesses.map(business => (
-          <Circle center={{lat: parseFloat(business.lat), lng: parseFloat(business.long)}} radius={5000} />
+        {/* {loaded && currentBusinesses.map(business => (
+          <Circle center={{lat: parseFloat(business.lat), lng: parseFloat(business.long)}} animation ={'DROP'} options={{ fillColor:"#e98541", fillOpacity:".9", strokeColor:"#e98541", strokeWeight:"1.5", strokeOpacity:"1", borderColor:"#e98541" }}radius={2000} addListener={Circle,"mouseOver"}/> */}
+        {loaded && currentBusinesses.filter(business => business.category === 'All').map(business => (
+        <Circle center={{lat: parseFloat(business.lat), lng: parseFloat(business.long)}} animation ={'Drop'} options={{strokeColor: '#5c60c0', strokeOpacity:".5", strokeWeight: ".5", fillColor: '5c60c0', fillOpacity:".3", clickable: true}} radius={3000} />
         ))}
-      </GoogleMap>)
+        {loaded && currentBusinesses.filter(business => business.category === 'women-owned').map(business => (
+        <Circle center={{lat: parseFloat(business.lat), lng: parseFloat(business.long)}} animation ={'bounce'} options={{strokeColor: 'blue', strokeOpacity:".5", strokeWeight: ".5", fillColor: 'blue', fillOpacity:".3", clickable: true}} radius={3000} />
+        ))}
+        {loaded && currentBusinesses.filter(business => business.category === 'minority-owned').map(business => (
+        <Circle center={{lat: parseFloat(business.lat), lng: parseFloat(business.long)}} animation ={'DROP'} options={{strokeColor: 'green', strokeOpacity:".5", strokeWeight: ".5", fillColor: 'green', fillOpacity:".3", clickable: true}} radius={3000} />
+        ))}
+        {loaded && currentBusinesses.filter(business => business.category === 'veteran-owned').map(business => (
+        <Circle center={{lat: parseFloat(business.lat), lng: parseFloat(business.long)}} animation ={'DROP'} options={{strokeColor: 'tomato', strokeOpacity:".5", strokeWeight: ".5", fillColor: 'tomato', fillOpacity:".7", clickable: true}} radius={3000} />
+        ))}
+        </GoogleMap>)
     }
   
     useEffect(() =>{
@@ -50,7 +61,7 @@ export default ({cities}) =>{
         <div style={{height: '70vh', border:"2px solid lightgrey", borderRadius: "5px"}} >
 
           <WrappedMap 
-          googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=<insertkeyhere>`}
+          googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key="api-key-goes-here"`}
           loadingElement={<div style={{height: "100%"}}/>}
           containerElement={<div style={{height: "100%"}}/>}
           mapElement={<div style={{height: "100%"}}/>}
@@ -77,9 +88,9 @@ export default ({cities}) =>{
             <table className="table table-striped table-hover table-bordered table-sm" style={{border: "1px solid lightgrey", borderRadius: "5px"}}>
               <thead className="thead-dark">
                 <tr>
-                  <th>Name of Business</th>
-                  <th>Category</th>
-                  <th>Location</th>
+                  <th style={{position: "sticky", top:"0"}}>Name of Business</th>
+                  <th style={{position: "sticky", top:"0"}}>Category</th>
+                  <th style={{position: "sticky", top:"0"}}>Location</th>
                 </tr>
               </thead>
               <tbody>

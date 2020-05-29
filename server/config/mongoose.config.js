@@ -3,7 +3,7 @@ const mongoose = require("mongoose")
 // this line enables validators to run on update
 mongoose.set("runValidators", false);
 
-mongoose.connect("mongodb://localhost/vwm_db", {
+mongoose.connect("mongodb://localhost/vwm_dbnewlyupdated", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 })
