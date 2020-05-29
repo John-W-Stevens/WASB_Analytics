@@ -87,9 +87,9 @@ export default ({cities}) =>{
             <table className="table table-striped table-hover table-bordered table-sm" style={{border: "1px solid lightgrey", borderRadius: "5px"}}>
               <thead className="thead-dark">
                 <tr>
-                  <th>Name of Business</th>
-                  <th>Category</th>
-                  <th>Location</th>
+                  <th style={{position: "sticky", top:"0"}}>Name of Business</th>
+                  <th style={{position: "sticky", top:"0"}}>Category</th>
+                  <th style={{position: "sticky", top:"0"}}>Location</th>
                 </tr>
               </thead>
               <tbody>
