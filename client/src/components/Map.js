@@ -76,7 +76,7 @@ export default ({cities}) =>{
           <label style={{margin:"0px 5px"}}>Veteran-owned</label>
           <input type="radio" name="Category" value= "women-owned" onChange = {(e) => {setFilter(e.target.value)}} style={{margin:"0px 5px"}}/>
           <label style={{margin:"0px 5px"}}>Women-owned</label>
-          <label style={{margin:"0px 5px"}}>Location:</label>
+          <label style={{margin:"0px 5px", margin:"0px 0px 30px 70px"}}>Location:</label>
           <div className="form-group" style={{display: "inline-block"}}>
             <input className="form-control" value = {cityFilter} onChange = {(e) => {setCityFilter(e.target.value)}} style={{margin:"0px 5px"}}/>
           </div>
@@ -95,10 +95,10 @@ export default ({cities}) =>{
               <tbody>
                 {loaded && currentBusinesses.map((business, idx) => (
                   <tr key={idx}>
-                    <td>{business.nameOfFirm}</td>
-                    <td>{business.category}</td>
-                    <td>{business.address} {business.city} {business.zipCode}</td>
-                  </tr>
+                  <td style={{fontFamily:"Helvetica Neue", textTransform:"uppercase", width:"1px", whiteSpace:"nowrap"}}>{business.nameOfFirm}</td>
+                  <td style={{fontFamily:"Helvetica Neue", textTransform:"none", width:"2px", whiteSpace:"nowrap"}}>{business.category}</td>
+                  <td style={{width:"1px", whiteSpace:"nowrap", fontSize:"small"}}>{business.address} {business.city} {business.zipCode}</td>
+                </tr>
                 ))}
               </tbody>
             </table>
