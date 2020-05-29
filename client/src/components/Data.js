@@ -1,13 +1,13 @@
 import React, { useState, setState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { VictoryBar, VictoryChart, VictoryAxis, VictoryTheme, VictoryStack, VictoryPie } from 'victory';
+import { VictoryBar, VictoryChart, VictoryAxis, VictoryTheme, VictoryStack, VictoryPie, VictoryGroup, VictoryLabel, VictoryLegend } from 'victory';
 
 const stateRaceDemo=[
   {x:"White", y:75},
   {x:"Black",  y:4},
   {x:"American Indian/Alaska Native",  y:1},
   {x:"Asian",  y:9},
-  {x:"Native Hawaiian/Pacific Islander",  y:1},
+  {x:"Pacific Islander",  y:1},
   {x:"Other Race",  y:5},
   {x:"Two+ Races",  y:6},
   {x:"Two races w/ other race",  y:1},
@@ -21,33 +21,33 @@ const countyRaceDemo={
     {x:"Black",	y:2},
     {x:"American Indian/Alaska Native ",	y:1},
     {x:"Asian",	y:5},
-    {x:"Native Hawaiian /Pacific Islander ",	y:1},
-    {x:"other race",	y:2},
+    {x:"Pacific Islander ",	y:1},
+    {x:"Other race",	y:2},
     {x:"Two+ races",	y:8},
     {x:"Two races w/ other race",	y:1},
-    {x:"Two+ races w/oome other race",	y:7}
+    {x:"Two+ races w/o other race",	y:7}
   ],
   "King":[
     {x:"White",		y:65},
     {x:"Black",		y:6},
     {x:"American Indian/Alaska Native ",		y:1},
     {x:"Asian",	y:17},
-    {x:"Native Hawaiian /Pacific Islander ",		y:1},
-    {x:"other race",		y:4},
+    {x:"Pacific Islander ",		y:1},
+    {x:"Other race",		y:4},
     {x:"Two+ races",		y:6},
     {x:"Two races w/ other race",		y:1},
-    {x:"Two+ races w/oome other race",	y:6}
+    {x:"Two+ races w/o other race",	y:6}
   ],
   "San Juan":[
     {x:"White",		y:90},
     {x:"Black",		y:0},
     {x:"American Indian/Alaska Native ",y:4},
     {x:"Asian",	y:1},
-    {x:"Native Hawaiian /Pacific Islander ",	y:0},
-    {x:"other race",	y:2},
+    {x:"Pacific Islander ",	y:0},
+    {x:"Other race",	y:2},
     {x:"Two+ races",	y:3},
     {x:"Two races w/ other race",y:0},
-    {x:"Two+ races w/oome other race",		y:2}
+    {x:"Two+ races w/o other race",		y:2}
 
 
 ],
@@ -56,33 +56,33 @@ const countyRaceDemo={
   {x:"Black",	y:2},
   {x:"American Indian/Alaska Native ",y:0},
   {x:"Asian",	y:8},
-  {x:"Native Hawaiian /Pacific Islander ",	y:0},
-  {x:"other race", y:2},
+  {x:"Pacific Islander ",	y:0},
+  {x:"Other race", y:2},
   {x:"Two+ races",y:4},
   {x:"Two races w/ other race",	y:0},
-  {x:"Two+ races w/oome other race",y:4}
+  {x:"Two+ races w/o other race",y:4}
 ],
 "Yakima":[
   {x:"White",y:78},
   {x:"Black",y:1},
   {x:"American Indian/Alaska Native ",y:4},
   {x:"Asian",	y:1},
-  {x:"Native Hawaiian /Pacific Islander ",y:0},
-  {x:"other race",y:12},
+  {x:"Pacific Islander ",y:0},
+  {x:"Other race",y:12},
   {x:"Two+ races",y:3},
   {x:"Two races w/ other race",y:1},
-  {x:"Two+ races w/oome other race",y:3}
+  {x:"Two+ races w/o other race",y:3}
 ],
 "Cowlitz":[
   {x:"White",y:89},
-{x:"Black",y:1},
-{x:"American Indian/Alaska Native ",y:1},
-{x:"Asian",	y:1},
-{x:"Native Hawaiian /Pacific Islander ",y:0},
-{x:"other race",	y:2},
-{x:"Two+ races",	y:5},
-{x:"Two races w/ other race",		y:1},
-{x:"Two+ races w/oome other race",	y:5}
+  {x:"Black",y:1},
+  {x:"American Indian/Alaska Native ",y:1},
+  {x:"Asian",	y:1},
+  {x:"Pacific Islander ",y:0},
+  {x:"Other race",	y:2},
+  {x:"Two+ races",	y:5},
+  {x:"Two races w/ other race",		y:1},
+  {x:"Two+ races w/o other race",	y:5}
 
 
 
@@ -92,11 +92,11 @@ const countyRaceDemo={
   {x:"Black",	y:0},
   {x:"American Indian/Alaska Native ",	y:13},
   {x:"Asian",	y:1},
-  {x:"Native Hawaiian /Pacific Islander ",	y:0},
-  {x:"other race",	y:1},
+  {x:"Pacific Islander ",	y:0},
+  {x:"Other race",	y:1},
   {x:"Two+ races",	y:8},
   {x:"Two races w/ other race",	y:0},
-  {x:"Two+ races w/oome other race",	y:8}
+  {x:"Two+ races w/o other race",	y:8}
 
 
 ],
@@ -105,22 +105,22 @@ const countyRaceDemo={
   {x:"Black",	y:1},
   {x:"American Indian/Alaska Native ",	y:1},
   {x:"Asian",	y:1},
-  {x:"Native Hawaiian /Pacific Islander ",	y:0},
-  {x:"other race",	y:2},
+  {x:"Pacific Islander ",	y:0},
+  {x:"Other race",	y:2},
   {x:"Two+ races",	y:5},
   {x:"Two races w/ other race",	y:1},
-  {x:"Two+ races w/oome other race",	y:4}
+  {x:"Two+ races w/o other race",	y:4}
 ],
 "Grays Harbor":[
   {x:"White",	y:88},
   {x:"Black",	y:1},
   {x:"American Indian/Alaska Native ",	y:4},
   {x:"Asian",	y:2},
-  {x:"Native Hawaiian /Pacific Islander ",	y:0},
-  {x:"other race",	y:1},
+  {x:"Pacific Islander ",	y:0},
+  {x:"Other race",	y:1},
   {x:"Two+ races",	y:4},
   {x:"Two races w/ other race",	y:0},
-  {x:"Two+ races w/oome other race",	y:4}
+  {x:"Two+ races w/o other race",	y:4}
 
 ],
 "Island":[
@@ -128,11 +128,11 @@ const countyRaceDemo={
   {x:"Black",	y:3},
   {x:"American Indian/Alaska Native ",	y:1},
   {x:"Asian",	y:5},
-  {x:"Native Hawaiian /Pacific Islander ",	y:0},
-  {x:"other race",	y:1},
+  {x:"Pacific Islander ",	y:0},
+  {x:"Other race",	y:1},
   {x:"Two+ races",	y:5},
   {x:"Two races w/ other race",	y:0},
-  {x:"Two+ races w/oome other race",	y:4}
+  {x:"Two+ races w/o other race",	y:4}
   
 ],
 "Wahkiakum":[
@@ -140,11 +140,11 @@ const countyRaceDemo={
   {x:"Black",	y:1},
   {x:"American Indian/Alaska Native ",	y:1},
   {x:"Asian",	y:2},
-  {x:"Native Hawaiian /Pacific Islander ",	y:0},
-  {x:"other race",	y:2},
+  {x:"Pacific Islander ",	y:0},
+  {x:"Other race",	y:2},
   {x:"Two+ races",	y:2},
   {x:"Two races w/ other race",	y:1},
-  {x:"Two+ races w/oome other race",	y:1}
+  {x:"Two+ races w/o other race",	y:1}
   
 
 ],
@@ -153,11 +153,11 @@ const countyRaceDemo={
   {x:"Black",	y:2},
   {x:"American Indian/Alaska Native ",	y:1},
   {x:"Asian",	y:2},
-  {x:"Native Hawaiian /Pacific Islander ",	y:0},
-  {x:"other race",	y:19},
+  {x:"Pacific Islander ",	y:0},
+  {x:"Other race",	y:19},
   {x:"Two+ races",	y:4},
   {x:"Two races w/ other race",	y:1},
-  {x:"Two+ races w/oome other race",	y:3}
+  {x:"Two+ races w/o other race",	y:3}
   
 
 ],
@@ -166,11 +166,11 @@ const countyRaceDemo={
   {x:"Black",	y:1},
   {x:"American Indian/Alaska Native ",	y:1},
   {x:"Asian",	y:1},
-  {x:"Native Hawaiian /Pacific Islander ",	y:0},
-  {x:"other race",	y:22},
+  {x:"Pacific Islander ",	y:0},
+  {x:"Other race",	y:22},
   {x:"Two+ races",	y:4},
   {x:"Two races w/ other race",	y:2},
-  {x:"Two+ races w/oome other race",	y:2}
+  {x:"Two+ races w/o other race",	y:2}
   
 
 ],
@@ -179,11 +179,11 @@ const countyRaceDemo={
   {x:"Black",	y:1},
   {x:"American Indian/Alaska Native ",	y:3},
   {x:"Asian",	y:4},
-  {x:"Native Hawaiian /Pacific Islander ",	y:0},
-  {x:"other race",	y:3},
+  {x:"Pacific Islander ",	y:0},
+  {x:"Other race",	y:3},
   {x:"Two+ races",	y:4},
   {x:"Two races w/ other race",	y:1},
-  {x:"Two+ races w/oome other race",	y:4}
+  {x:"Two+ races w/o other race",	y:4}
   
 
 ],
@@ -193,11 +193,11 @@ const countyRaceDemo={
   {x:"Black",	y:0},
   {x:"American Indian/Alaska Native ",	y:10},
   {x:"Asian",	y:1},
-  {x:"Native Hawaiian /Pacific Islander ",	y:0},
-  {x:"other race",	y:10},
+  {x:"Pacific Islander ",	y:0},
+  {x:"Other race",	y:10},
   {x:"Two+ races",	y:5},
   {x:"Two races w/ other race",	y:1},
-  {x:"Two+ races w/oome other race",	y:5}
+  {x:"Two+ races w/o other race",	y:5}
   
 ],
 "Kittitas":[
@@ -205,11 +205,11 @@ const countyRaceDemo={
   {x:"Black",	y:1},
   {x:"American Indian/Alaska Native ",	y:1},
   {x:"Asian",	y:2},
-  {x:"Native Hawaiian /Pacific Islander ",	y:1},
-  {x:"other race",	y:4},
+  {x:"Pacific Islander ",	y:1},
+  {x:"Other race",	y:4},
   {x:"Two+ races",	y:3},
   {x:"Two races w/ other race",	y:0},
-  {x:"Two+ races w/oome other race",	y:3}
+  {x:"Two+ races w/o other race",	y:3}
   
 
 ],
@@ -218,11 +218,11 @@ const countyRaceDemo={
   {x:"Black",	y:2},
   {x:"American Indian/Alaska Native ",	y:1},
   {x:"Asian",	y:3},
-  {x:"Native Hawaiian /Pacific Islander ",	y:0},
-  {x:"other race",	y:10},
+  {x:"Pacific Islander ",	y:0},
+  {x:"Other race",	y:10},
   {x:"Two+ races",	y:4},
   {x:"Two races w/ other race",	y:1},
-  {x:"Two+ races w/oome other race",	y:3}
+  {x:"Two+ races w/o other race",	y:3}
   
 ],
 "Columbia":[
@@ -230,11 +230,11 @@ const countyRaceDemo={
   {x:"Black",	y:1},
   {x:"American Indian/Alaska Native ",	y:0},
   {x:"Asian",	y:2},
-  {x:"Native Hawaiian /Pacific Islander ",	y:1},
-  {x:"other race",	y:1},
+  {x:"Pacific Islander ",	y:1},
+  {x:"Other race",	y:1},
   {x:"Two+ races",	y:4},
   {x:"Two races w/ other race",	y:2},
-  {x:"Two+ races w/oome other race",	y:2}
+  {x:"Two+ races w/o other race",	y:2}
   
 
 ],
@@ -244,11 +244,11 @@ const countyRaceDemo={
   {x:"Black",	y:0},
   {x:"American Indian/Alaska Native ",	y:1},
   {x:"Asian",	y:1},
-  {x:"Native Hawaiian /Pacific Islander ",	y:0},
-  {x:"other race",	y:1},
+  {x:"Pacific Islander ",	y:0},
+  {x:"Other race",	y:1},
   {x:"Two+ races",	y:4},
   {x:"Two races w/ other race",	y:1},
-  {x:"Two+ races w/oome other race",	y:3}
+  {x:"Two+ races w/o other race",	y:3}
   
 ],
 
@@ -258,11 +258,11 @@ const countyRaceDemo={
   {x:"Black",	y:0},
   {x:"American Indian/Alaska Native ",	y:1},
   {x:"Asian",	y:1},
-  {x:"Native Hawaiian /Pacific Islander ",	y:0},
-  {x:"other race",	y:1},
+  {x:"Pacific Islander ",	y:0},
+  {x:"Other race",	y:1},
   {x:"Two+ races",	y:4},
   {x:"Two races w/ other race",	y:1},
-  {x:"Two+ races w/oome other race",	y:3}
+  {x:"Two+ races w/o other race",	y:3}
   
 ],
 "Mason":[
@@ -270,11 +270,11 @@ const countyRaceDemo={
   {x:"Black",	y:2},
   {x:"American Indian/Alaska Native ",	y:3},
   {x:"Asian",	y:1},
-  {x:"Native Hawaiian /Pacific Islander ",	y:0},
-  {x:"other race",	y:5},
+  {x:"Pacific Islander ",	y:0},
+  {x:"Other race",	y:5},
   {x:"Two+ races",	y:5},
   {x:"Two races w/ other race",	y:1},
-  {x:"Two+ races w/oome other race",	y:5}
+  {x:"Two+ races w/o other race",	y:5}
   
 ],
 "Stevens":[
@@ -282,11 +282,11 @@ const countyRaceDemo={
   {x:"Black",	y:0},
   {x:"American Indian/Alaska Native ",	y:5},
   {x:"Asian",	y:1},
-  {x:"Native Hawaiian /Pacific Islander ",	y:0},
-  {x:"other race",	y:1},
+  {x:"Pacific Islander ",	y:0},
+  {x:"Other race",	y:1},
   {x:"Two+ races",	y:4},
   {x:"Two races w/ other race",	y:0},
-  {x:"Two+ races w/oome other race",	y:4}
+  {x:"Two+ races w/o other race",	y:4}
   
 ],
 
@@ -295,11 +295,11 @@ const countyRaceDemo={
   {x:"Black",	y:2},
   {x:"American Indian/Alaska Native ",	y:1},
   {x:"Asian",	y:2},
-  {x:"Native Hawaiian /Pacific Islander ",	y:1},
-  {x:"other race",	y:1},
+  {x:"Pacific Islander ",	y:1},
+  {x:"Other race",	y:1},
   {x:"Two+ races",	y:5},
   {x:"Two races w/ other race",	y:0},
-  {x:"Two+ races w/oome other race",	y:4}
+  {x:"Two+ races w/o other race",	y:4}
   
 
 ],
@@ -308,11 +308,11 @@ const countyRaceDemo={
   {x:"Black",	y:0},
   {x:"American Indian/Alaska Native ",	y:1},
   {x:"Asian",	y:1},
-  {x:"Native Hawaiian /Pacific Islander ",	y:0},
-  {x:"other race",	y:9},
+  {x:"Pacific Islander ",	y:0},
+  {x:"Other race",	y:9},
   {x:"Two+ races",	y:3},
   {x:"Two races w/ other race",	y:1},
-  {x:"Two+ races w/oome other race",	y:3}
+  {x:"Two+ races w/o other race",	y:3}
   
 
 ],
@@ -321,11 +321,11 @@ const countyRaceDemo={
   {x:"Black",	y:1},
   {x:"American Indian/Alaska Native ",	y:2},
   {x:"Asian",	y:2},
-  {x:"Native Hawaiian /Pacific Islander ",	y:0},
-  {x:"other race",	y:1},
+  {x:"Pacific Islander ",	y:0},
+  {x:"Other race",	y:1},
   {x:"Two+ races",	y:3},
   {x:"Two races w/ other race",	y:0},
-  {x:"Two+ races w/oome other race",	y:3}
+  {x:"Two+ races w/o other race",	y:3}
   
 
 ],
@@ -334,11 +334,11 @@ const countyRaceDemo={
   {x:"Black",	y:0},
   {x:"American Indian/Alaska Native ",	y:1},
   {x:"Asian",	y:2},
-  {x:"Native Hawaiian /Pacific Islander ",	y:1},
-  {x:"other race",	y:3},
+  {x:"Pacific Islander ",	y:1},
+  {x:"Other race",	y:3},
   {x:"Two+ races",	y:4},
   {x:"Two races w/ other race",	y:0},
-  {x:"Two+ races w/oome other race",	y:4}
+  {x:"Two+ races w/o other race",	y:4}
   
 
 ],
@@ -347,11 +347,11 @@ const countyRaceDemo={
   {x:"Black",	y:1},
   {x:"American Indian/Alaska Native ",	y:2},
   {x:"Asian",	y:1},
-  {x:"Native Hawaiian /Pacific Islander ",	y:0},
-  {x:"other race",	y:1},
+  {x:"Pacific Islander ",	y:0},
+  {x:"Other race",	y:1},
   {x:"Two+ races",	y:2},
   {x:"Two races w/ other race",	y:0},
-  {x:"Two+ races w/oome other race",	y:2}
+  {x:"Two+ races w/o other race",	y:2}
   
 
 ],
@@ -360,11 +360,11 @@ const countyRaceDemo={
   {x:"Black",	y:1},
   {x:"American Indian/Alaska Native ",	y:5},
   {x:"Asian",	y:2},
-  {x:"Native Hawaiian /Pacific Islander ",	y:0},
-  {x:"other race",	y:1},
+  {x:"Pacific Islander ",	y:0},
+  {x:"Other race",	y:1},
   {x:"Two+ races",	y:4},
   {x:"Two races w/ other race",	y:0},
-  {x:"Two+ races w/oome other race",	y:3}
+  {x:"Two+ races w/o other race",	y:3}
   
 
 ],
@@ -373,11 +373,11 @@ const countyRaceDemo={
   {x:"Black",	y:0},
   {x:"American Indian/Alaska Native ",	y:3},
   {x:"Asian",	y:1},
-  {x:"Native Hawaiian /Pacific Islander ",	y:0},
-  {x:"other race",	y:2},
+  {x:"Pacific Islander ",	y:0},
+  {x:"Other race",	y:2},
   {x:"Two+ races",	y:2},
   {x:"Two races w/ other race",	y:0},
-  {x:"Two+ races w/oome other race",	y:2}
+  {x:"Two+ races w/o other race",	y:2}
   
 ],
 
@@ -386,11 +386,11 @@ const countyRaceDemo={
   {x:"Black",	y:0},
   {x:"American Indian/Alaska Native ",	y:1},
   {x:"Asian",	y:1},
-  {x:"Native Hawaiian /Pacific Islander ",	y:0},
-  {x:"other race",	y:24},
+  {x:"Pacific Islander ",	y:0},
+  {x:"Other race",	y:24},
   {x:"Two+ races",	y:4},
   {x:"Two races w/ other race",	y:1},
-  {x:"Two+ races w/oome other race",	y:3}
+  {x:"Two+ races w/o other race",	y:3}
   
 
 ],
@@ -399,11 +399,11 @@ const countyRaceDemo={
   {x:"Black",	y:7},
   {x:"American Indian/Alaska Native ",	y:1},
   {x:"Asian",	y:6},
-  {x:"Native Hawaiian /Pacific Islander ",	y:1},
-  {x:"other race",	y:3},
+  {x:"Pacific Islander ",	y:1},
+  {x:"Other race",	y:3},
   {x:"Two+ races",	y:8},
   {x:"Two races w/ other race",	y:0},
-  {x:"Two+ races w/oome other race",	y:8}
+  {x:"Two+ races w/o other race",	y:8}
   
 
 ],
@@ -412,11 +412,11 @@ const countyRaceDemo={
   {x:"Black",	y:2},
   {x:"American Indian/Alaska Native ",	y:1},
   {x:"Asian",	y:2},
-  {x:"Native Hawaiian /Pacific Islander ",	y:0},
-  {x:"other race",	y:7},
+  {x:"Pacific Islander ",	y:0},
+  {x:"Other race",	y:7},
   {x:"Two+ races",	y:4},
   {x:"Two races w/ other race",	y:1},
-  {x:"Two+ races w/oome other race",	y:4}
+  {x:"Two+ races w/o other race",	y:4}
   
 ],
 "Snohomish":[
@@ -424,11 +424,11 @@ const countyRaceDemo={
   {x:"Black",	y:3},
   {x:"American Indian/Alaska Native ",	y:1},
   {x:"Asian",	y:10},
-  {x:"Native Hawaiian /Pacific Islander ",	y:1},
-  {x:"other race",	y:3},
+  {x:"Pacific Islander ",	y:1},
+  {x:"Other race",	y:3},
   {x:"Two+ races",	y:6},
   {x:"Two races w/ other race",	y:1},
-  {x:"Two+ races w/oome other race",	y:6}
+  {x:"Two+ races w/o other race",	y:6}
   
 
 ],
@@ -437,11 +437,11 @@ const countyRaceDemo={
   {x:"Black",	y:3},
   {x:"American Indian/Alaska Native ",	y:1},
   {x:"Asian",	y:6},
-  {x:"Native Hawaiian /Pacific Islander ",	y:1},
-  {x:"other race",	y:1},
+  {x:"Pacific Islander ",	y:1},
+  {x:"Other race",	y:1},
   {x:"Two+ races",	y:6},
   {x:"Two races w/ other race",	y:0},
-  {x:"Two+ races w/oome other race",	y:5}
+  {x:"Two+ races w/o other race",	y:5}
   
 
 ],
@@ -450,11 +450,11 @@ const countyRaceDemo={
   {x:"Black",	y:2},
   {x:"American Indian/Alaska Native ",	y:1},
   {x:"Asian",	y:4},
-  {x:"Native Hawaiian /Pacific Islander ",	y:1},
-  {x:"other race",	y:3},
+  {x:"Pacific Islander ",	y:1},
+  {x:"Other race",	y:3},
   {x:"Two+ races",	y:5},
   {x:"Two races w/ other race",	y:0},
-  {x:"Two+ races w/oome other race",	y:5}
+  {x:"Two+ races w/o other race",	y:5}
   
 ],
 "Adams":[
@@ -462,11 +462,11 @@ const countyRaceDemo={
   {x:"Black",	y:1},
   {x:"American Indian/Alaska Native ",	y:4},
   {x:"Asian",	y:1},
-  {x:"Native Hawaiian /Pacific Islander ",	y:0},
-  {x:"other race",	y:23},
+  {x:"Pacific Islander ",	y:0},
+  {x:"Other race",	y:23},
   {x:"Two+ races",	y:2},
   {x:"Two races w/ other race",	y:0},
-  {x:"Two+ races w/oome other race",	y:1}
+  {x:"Two+ races w/o other race",	y:1}
   
 
 ],
@@ -475,11 +475,11 @@ const countyRaceDemo={
   {x:"Black",	y:1},
   {x:"American Indian/Alaska Native ",	y:2},
   {x:"Asian",	y:2},
-  {x:"Native Hawaiian /Pacific Islander ",	y:0},
-  {x:"other race",	y:9},
+  {x:"Pacific Islander ",	y:0},
+  {x:"Other race",	y:9},
   {x:"Two+ races",	y:4},
   {x:"Two races w/ other race",	y:1},
-  {x:"Two+ races w/oome other race",	y:3}
+  {x:"Two+ races w/o other race",	y:3}
   
 
 ],
@@ -488,16 +488,60 @@ const countyRaceDemo={
   {x:"Black",	y:1},
   {x:"American Indian/Alaska Native ",	y:1},
   {x:"Asian",	y:1},
-  {x:"Native Hawaiian /Pacific Islander ",	y:0},
-  {x:"other race",	y:1},
+  {x:"Pacific Islander ",	y:0},
+  {x:"Other race",	y:1},
   {x:"Two+ races",	y:2},
   {x:"Two races w/ other race",	y:0},
-  {x:"Two+ races w/oome other race",	y:2}
+  {x:"Two+ races w/o other race",	y:2}
   
 
 ]
 
-  }
+}
+
+const counties=[
+  "Kitsap",
+  "King",
+  "Pend Oreille",
+  "San Juan",
+  "Whitman",
+  "Yakima",
+  "Cowlitz",
+  "Ferry",
+  "Lewis",
+  "Grays Harbor",
+  "Island",
+  "Wahkiakum",
+  "Franklin",
+  "Grant",
+  "Whatcom",
+  "Okanogan",
+  "Kittitas",
+  "Benton",
+  "Columbia",
+  "Columbia",
+  "Asotin",
+  "Garfield",
+  "Mason",
+  "Stevens",
+  "Spokane",
+  "Chelan",
+  "Jefferson",
+  "Pacific",
+  "Skamania",
+  "Clallam",
+  "Klickitat",
+  "Douglas",
+  "Pierce",
+  "Walla Walla",
+  "Snohomish",
+  "Thurston",
+  "Clark",
+  "Adams",
+  "Skagit",
+  "Lincoln", 
+
+]
   
 
   
@@ -505,50 +549,78 @@ const countyRaceDemo={
 
 
 
-const StateRace=(category,locationType) =>  {
-    
+const StateRace=(filter) =>  {
+      
       return (
-        <div>
-        
-        {/* <VictoryChart
-        domainPadding={20}
-        theme={VictoryTheme.material}
-      >
-        <VictoryAxis
-          tickValues={[1, 2, 3, 4]}
-          tickFormat={[
-            "White",
-            "Black",
-            "American Indian/Alaska Native",
-            "Asian",
-            "Native Hawaiian/Pacific Islander",
-            "Other Race",
-            "Two+ Races",
-            "Two races w/ some other race",
-            "Two+ races w/o other race"
-          ]}
-          style={{
-            tickLabels:{fontSize:15,padding: 5}
-          }}
-        />
-        <VictoryAxis
-          dependentAxis
-          tickFormat={(x) => (`${x}`)}
-        />
-        
-           
-        
-          <VictoryBar
-            data={stateRaceDemo}
-            x="race"
-            y="fraction"
-          /> */}
+      <div>       
+        {/* <label htmlFor="location">Choose State/County</label>
+        <select name="location">
+          <option value="state">Washington State</option>
+            
+            for (i=0;i<counties.length;i++){
+              <option>
+                {counties[i]}
+              </option>
+            }
+            )
+            
+         
+        </select> */}
+
+        <VictoryLegend
           
+          height={40}
+          width={200}
+          itemsPerRow={3}
+          orientation="horizontal"
+          gutter={5}
+          colorScale={["tomato", "orange", "gold", "cyan", "navy", "purple", "green", "salmon", "blue" ]}
+          style={{ border: { stroke: "none" }, title: { fontSize: 8 }, labels: {fontSize:5} }}
+          data={[
+            {name:"White"}, 
+            {name:"Black"}, 
+            {name:"American Indian/Alaska Native"}, 
+            {name:"Asian"}, 
+            {name:"Pacific Islander"}, 
+            {name:"Other Race"}, 
+            {name:"Two+ Races"}, 
+            {name:"Two races w/ other race"}, 
+            {name:"Two+ races w/o other race"} 
+          ]}
         
-      {/* </VictoryChart> */}
+        
+        
+        />
        <VictoryPie
-        colorScale={["tomato", "orange", "gold", "cyan", "navy" ]}
-        data={countyRaceDemo.Kitsap}
+        // events={[{
+        //   target: "data",
+          
+        //   eventHandlers: {
+        //     onClick: () => {
+        //       return [
+        //         {
+        //           target: "data",
+                  
+        //           mutation: ({ style }) => {
+        //             return style.fill === "#c43a31" ? null : { style: { fill: "#c43a31" } };
+        //           }
+        //         } 
+                
+        //       ];
+        //     }
+        //   }
+        // }]}
+        height={300}
+        colorScale={["tomato", "orange", "gold", "cyan", "navy", "purple", "green", "salmon", "blue" ]}
+        padAngle={({ datum }) =>1}
+        
+        data={stateRaceDemo}
+        // innerRadius={({ datum }) => datum.y * 20}
+        innerRadius={30}
+        labels={() => null}
+       
+        
+        
       />
       </div>
       );

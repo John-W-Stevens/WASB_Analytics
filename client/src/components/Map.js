@@ -32,6 +32,7 @@ export default ({cities}) =>{
     const WrappedMap = withScriptjs(withGoogleMap(Map));
   
     const filterHandler = e =>{
+      console.log(filter)
       e.preventDefault();
       if(filter=== "All" && cityFilter===""){
         setCurrentBusinesses(businesses)
